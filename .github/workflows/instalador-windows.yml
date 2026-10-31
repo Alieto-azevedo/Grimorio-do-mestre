@@ -1,9 +1,12 @@
 name: Gerar instalador Windows
 
+# Roda a cada envio para a branch main (ou manualmente na aba Actions).
+# Publica o instalador na página Releases com a versão do package.json.
 on:
   workflow_dispatch:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths-ignore: ['**.md']
 
 permissions:
   contents: write
@@ -16,6 +19,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Ler versão
+        id: versao
+        shell: bash
+        run: echo "v=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
       - name: Instalar dependências
         run: npm install
       - name: Gerar instalador (.exe)
@@ -26,7 +33,13 @@ jobs:
           name: Grimorio-do-Mestre-instalador
           path: dist/*.exe
       - name: Publicar na página de Releases
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.versao.outputs.v }}
+          name: Grimório do Mestre ${{ steps.versao.outputs.v }}
+          target_commitish: ${{ github.sha }}
+          make_latest: true
           files: dist/*.exe
+          body: |
+            Baixe o arquivo **Grimorio-do-Mestre-Setup-${{ steps.versao.outputs.v }}.exe** abaixo e execute.
+            Se o Windows mostrar "O Windows protegeu o computador", clique em *Mais informações → Executar assim mesmo* (o instalador não tem assinatura digital paga).
