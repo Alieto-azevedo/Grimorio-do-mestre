@@ -25,7 +25,7 @@ Também tem busca com **Ctrl+K**, nova página com **Ctrl+N**, alternância entr
 
 ## Como gerar o instalador (.exe)
 
-**Opção A, pelo GitHub (sem instalar nada no PC):** envie esta pasta para o repositório `Grimorio-do-mestre`. Na aba **Actions**, rode **"Gerar instalador Windows"** e baixe o `.exe` em *Artifacts*. Se você criar uma tag `v1.0.0`, o instalador também é publicado em **Releases**.
+**Opção A, pelo GitHub (sem instalar nada no PC):** a cada envio para a branch `main`, o GitHub gera o instalador sozinho (aba **Actions**) e o publica em **Releases** com a versão do `package.json`. Para lançar uma versão nova, aumente o `"version"` no `package.json`.
 
 **Opção B, no seu PC:** instale o [Node.js LTS](https://nodejs.org) e dê dois cliques em `gerar-instalador.bat`. O instalador aparece na pasta `dist`. Para só testar sem instalar, use `abrir-sem-instalar.bat`.
 
