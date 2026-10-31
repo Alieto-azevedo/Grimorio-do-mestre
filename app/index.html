@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' data: blob: grimorio: https: http:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' grimorio:">
+  <title>Grimório do Mestre</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="barra-lateral"></aside>
+    <div id="principal">
+      <header id="topo">
+        <button id="btn-busca" class="busca-falsa" title="Buscar (Ctrl+K)">
+          <span>🔍 Buscar páginas, NPCs, locais…</span><kbd>Ctrl K</kbd>
+        </button>
+        <form id="dado-rapido" title="Rolar dados (ex.: 1d20+5, 2d6+3, 4d6kh3)">
+          <span class="icone-dado">🎲</span>
+          <input id="dado-rapido-expr" placeholder="1d20+5" autocomplete="off" spellcheck="false">
+          <output id="dado-rapido-res"></output>
+        </form>
+        <button id="btn-nova" class="btn primario">＋ Nova página</button>
+      </header>
+      <main id="conteudo"></main>
+    </div>
+  </div>
+  <div id="camada-modal"></div>
+  <div id="avisos"></div>
+
+  <script src="js/util.js"></script>
+  <script src="js/markdown.js"></script>
+  <script src="js/dados-rolagem.js"></script>
+  <script src="js/armazenamento.js"></script>
+  <script src="js/tipos.js"></script>
+  <script src="js/estado.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="dados/bestiario-srd.js"></script>
+  <script src="dados/tabelas.js"></script>
+  <script src="js/paginas.js"></script>
+  <script src="js/painel.js"></script>
+  <script src="js/iniciativa.js"></script>
+  <script src="js/bestiario.js"></script>
+  <script src="js/encontros.js"></script>
+  <script src="js/geradores.js"></script>
+  <script src="js/mesa.js"></script>
+  <script src="js/campanhas.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>
