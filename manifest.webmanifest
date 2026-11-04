@@ -1,0 +1,17 @@
+{
+  "name": "Grimório do Mestre",
+  "short_name": "Grimório",
+  "description": "Ferramentas de sessão e biblioteca da campanha para mestres de RPG",
+  "lang": "pt-BR",
+  "start_url": "./#/sessao/mesa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#17120e",
+  "theme_color": "#17120e",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icones/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

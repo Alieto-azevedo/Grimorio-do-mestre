@@ -9,9 +9,9 @@ G.md = (function () {
 
     s = s.replace(/`([^`]+)`/g, (_, c) => guardar(`<code>${c}</code>`));
     s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt, src) => {
-      const url = op.urlImagem ? op.urlImagem(src) : src;
-      if (!url) return '';
-      return guardar(`<img src="${url}" alt="${alt}" loading="lazy" class="img-inline">`);
+      if (src.startsWith('img:')) return guardar(`<img data-ref="${src}" alt="${alt}" loading="lazy" class="img-inline">`);
+      if (!/^(https?:|data:)/.test(src)) return '';
+      return guardar(`<img src="${src}" alt="${alt}" loading="lazy" class="img-inline">`);
     });
     s = s.replace(/\[\[([^\]|]+?)(?:\|([^\]]+))?\]\]/g, (_, titulo, apelido) => {
       const alvo = op.resolverLink ? op.resolverLink(titulo.trim()) : null;
@@ -97,8 +97,9 @@ G.md = (function () {
 
       const soImagem = t.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
       if (soImagem) {
-        const url = op.urlImagem ? op.urlImagem(soImagem[2]) : soImagem[2];
-        if (url) html += `<figure><img src="${url}" alt="${esc(soImagem[1])}" loading="lazy">${soImagem[1] ? `<figcaption>${inline(soImagem[1], op)}</figcaption>` : ''}</figure>`;
+        const src = soImagem[2];
+        const attr = src.startsWith('img:') ? `data-ref="${esc(src)}"` : (/^(https?:|data:)/.test(src) ? `src="${esc(src)}"` : '');
+        if (attr) html += `<figure><img ${attr} alt="${esc(soImagem[1])}" loading="lazy">${soImagem[1] ? `<figcaption>${inline(soImagem[1], op)}</figcaption>` : ''}</figure>`;
         i++; continue;
       }
 
